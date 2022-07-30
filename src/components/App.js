@@ -6,17 +6,19 @@ import itemData from "../data/items";
 function App() {
   const [items, setItems] = useState(itemData);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
   function handleDarkModeClick() {
     setIsDarkMode((isDarkMode) => !isDarkMode);
+  }
+
+  function handleFormSubmit(updatedItems) {
+    setItems([...items, updatedItems])
   }
 
   return (
     <div className={"App " + (isDarkMode ? "dark" : "light")}>
       <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
-      <ShoppingList items={items} />
+      <ShoppingList items={items} onItemFormSubmit={handleFormSubmit}/>
     </div>
   );
 }
-
 export default App;
